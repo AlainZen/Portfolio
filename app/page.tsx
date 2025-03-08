@@ -93,15 +93,22 @@ export default function Page() {
                   title="Harry Potter TCG"
                   description="Site pour collectionner et échanger des cartes Harry Potter, développé en première année."
                   image="/placeholder.svg?height=400&width=600"
-                  link="https://github.com/AlainZen/Projet_SCSS"
+                  link="https://github.com/AlainZen/Project_HarryPotterTCG"
                   tags={["Prisma", "HTML", "CSS", "JavaScript", "Node.js"]}
                 />
                 <ProjectCard
                   title="Concept Site Animalier"
                   description="Concept pour un site animalier créé en utilisant SASS pour un design élégant et moderne."
                   image="/placeholder.svg?height=400&width=600"
-                  link="https://github.com/AlainZen/Project_HarryPotterTCG"
+                  link="https://github.com/AlainZen/Projet_SCSS"
                   tags={["HTML", "SASS"]}
+                />
+                <ProjectCard
+                  title="Site Creativ Development"
+                  description="Concept de site créatif, exprimer des émotions et des idées à travers le design."
+                  image="/crea.png"
+                  link="https://github.com/AlainZen/EmotionAnimation"
+                  tags={["HTML", "CSS", "JavaScript"]}
                 />
               </div>
             </div>

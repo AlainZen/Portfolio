@@ -4,44 +4,53 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { useState, useRef } from "react"
+import { useState } from "react"
 import emailjs from '@emailjs/browser'
 
-// Initialiser EmailJS (À ajouter)
-emailjs.init("aL9Er_sw1ayqfy3DG") // Remplace par ta clé publique
+emailjs.init("aL9Er_sw1ayqfy3DG");
 
 export default function ContactForm() {
   const [pending, setPending] = useState(false)
   const [message, setMessage] = useState("")
-  const formRef = useRef<HTMLFormElement>(null)
-  
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: ""
+  })
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setPending(true)
     
-    if (!formRef.current) return
-    
     try {
-      // Configuration EmailJS
-      const serviceId = "service_temw44h" // Remplace par ton ID de service
-      const templateId = "template_x4t5pry" // Remplace par ton ID de template
+      console.log("Tentative d'envoi d'email avec:", {
+        serviceId: "service_temw44h",
+        templateId: "template_zuj6j5f",
+        data: formData
+      });
       
-      // Envoi de l'email via EmailJS avec la référence du formulaire directement
-      const response = await emailjs.sendForm(
-        serviceId,
-        templateId,
-        formRef.current,
-        "YOUR_PUBLIC_KEY" // Remplace par ta clé publique
-      )
+      const response = await emailjs.send(
+        "service_temw44h", 
+        "template_zuj6j5f",
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message
+        }
+      );
       
-      if (response.status === 200) {
-        setMessage("Merci pour votre message ! Je vous répondrai bientôt.")
-        formRef.current.reset()
-      } else {
-        throw new Error("Échec de l'envoi de l'email")
-      }
+      console.log("Réponse EmailJS:", response);
+      setMessage("Merci pour votre message ! Je vous répondrai bientôt.")
+      setFormData({ name: "", email: "", message: "" })
     } catch (error) {
-      console.error("Erreur lors de l'envoi du message:", error)
+      console.error("Erreur d'envoi:", error);
       setMessage("Une erreur s'est produite. Veuillez réessayer.")
     } finally {
       setPending(false)
@@ -50,24 +59,43 @@ export default function ContactForm() {
 
   return (
     <Card className="p-6">
-      <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="name" className="block text-sm font-medium mb-2">
             Nom
           </label>
-          <Input id="name" name="name" required />
+          <Input 
+            id="name" 
+            name="name" 
+            value={formData.name}
+            onChange={handleChange}
+            required 
+          />
         </div>
         <div>
           <label htmlFor="email" className="block text-sm font-medium mb-2">
             Email
           </label>
-          <Input id="email" name="email" type="email" required />
+          <Input 
+            id="email" 
+            name="email" 
+            type="email" 
+            value={formData.email}
+            onChange={handleChange}
+            required 
+          />
         </div>
         <div>
           <label htmlFor="message" className="block text-sm font-medium mb-2">
             Message
           </label>
-          <Textarea id="message" name="message" required />
+          <Textarea 
+            id="message" 
+            name="message" 
+            value={formData.message}
+            onChange={handleChange}
+            required 
+          />
         </div>
         <Button type="submit" className="w-full" disabled={pending}>
           {pending ? "Envoi en cours..." : "Envoyer le message"}
@@ -77,3 +105,4 @@ export default function ContactForm() {
     </Card>
   )
 }
+
