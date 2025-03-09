@@ -90,11 +90,11 @@ export default function Page() {
               </h2>
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 <ProjectCard
-                  title="Harry Potter TCG"
-                  description="Site pour collectionner et échanger des cartes Harry Potter, développé en première année."
-                  image="/placeholder.svg?height=400&width=600"
-                  link="https://github.com/AlainZen/Project_HarryPotterTCG"
-                  tags={["Prisma", "HTML", "CSS", "JavaScript", "Node.js"]}
+                  title= "Harry Potter TCG"
+                  description= "Site pour collectionner et échanger des cartes Harry Potter, développé en première année."
+                  image= "P_HPTCG.png"
+                  link= "https://github.com/AlainZen/Project_HarryPotterTCG"
+                  tags= {["JavaScript", "Prisma", "NodeJS"]}
                 />
                 <ProjectCard
                   title="Concept Site Animalier"
@@ -106,7 +106,7 @@ export default function Page() {
                 <ProjectCard
                   title="Site Creativ Development"
                   description="Concept de site créatif, exprimer des émotions et des idées à travers le design."
-                  image="/crea.png"
+                  image="P_crea.png"
                   link="https://github.com/AlainZen/EmotionAnimation"
                   tags={["HTML", "CSS", "JavaScript"]}
                 />

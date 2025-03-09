@@ -11,7 +11,7 @@ const experiences = [
   {
     title: "CHEF DE PROJET - BOURSE AU PROJET",
     company: "Mairie de Bois-Colombes",
-    period: "Jan '25 - Actuel",
+    period: "Janvier 2025 - Actuel",
     description: [
       "Gestion et coordination d'une équipe pluridisciplinaire pour garantir la bonne exécution des livrables.",
       "Pilotage d'un projet transversal avec une dimension technologique, en lien avec la transition écologique de la commune.",
@@ -22,7 +22,7 @@ const experiences = [
   {
     title: "DÉVELOPPEUR BACK-END - MUSEÉ DU JOUET POISSY",
     company: "Musée du Jouet Poissy",
-    period: "Oct '24 - Déc '24",
+    period: "Octobre 2024 - Décembre 2024",
     description: [
       "Conception et développement de solutions back-end pour un site de personnalisation de voitures.",
       "Mise en place de l'infrastructure back-end permettant la gestion des options de personnalisation et des images.",
@@ -32,7 +32,7 @@ const experiences = [
   {
     title: "LEAD DÉVELOPPEUR - PROJET TRANSVERSAL IIM",
     company: "IIM",
-    period: "Fev '24 - Mars '24",
+    period: "Février 2024 - Mars 2024",
     description: [
       "Lead développement pour un projet des JO de Paris 2024, avec l'objectif de créer un site esthétique et fonctionnel.",
       "Implémentation et gestion d'une API pour la diffusion d'articles en temps réel.",

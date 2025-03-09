@@ -8,9 +8,9 @@ const projects = [
   {
     title: "Harry Potter TCG",
     description: "Site pour collectionner et échanger des cartes Harry Potter, développé en première année.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "P_HPTCG.png",
     link: "https://github.com/AlainZen/Project_HarryPotterTCG",
-    tags: ["JavaScript", "Prisma", "NodeJS", "SASS"],
+    tags: ["JavaScript", "Prisma", "NodeJS"],
   },
   {
     title: "Concept Site Animalier",
@@ -43,7 +43,7 @@ const projects = [
   {
     title: "PokéApi",
     description: "Mini Pokédex connectant à la PokéAPI pour récupérer les infos Pokémon.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "P_pokeAPI.png",
     link: "https://github.com/AlainZen/Pokemon_API",
     tags: ["HTML", "CSS", "JavaScript"],
   },
@@ -54,6 +54,20 @@ const projects = [
     link: "https://github.com/AlainZen/Poke_PHPOOP",
     tags: ["PHP", "JavaScript"],
   },
+  {
+    title: "Portfolio",
+    description: "Portfolio en TypeScript avec NextJS, React et TailwindCSS.",
+    image: "P_portfolio.png",
+    link: "https://github.com/AlainZen/Portfolio.git",
+    tags: ["TypeScript", "NextJS", "React", "TailwindCSS"],
+  },
+  {
+    title: "Site Creativ Development",
+    description: "Concept de site créatif, exprimer des émotions et des idées à travers le design.",
+    image: "P_crea.png",
+    link: "https://github.com/AlainZen/EmotionAnimation",
+    tags: ["HTML", "CSS", "JavaScript"],
+    },
 ]
 
 const allTags = ["Tous", "SASS", "Python", "React", "JavaScript"]
