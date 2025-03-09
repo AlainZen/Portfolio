@@ -57,7 +57,7 @@ const projects = [
   {
     title: "Portfolio",
     description: "Portfolio en TypeScript avec NextJS, React et TailwindCSS.",
-    image: "P_portfolio.png",
+    image: "P_Portfolio.png",
     link: "https://github.com/AlainZen/Portfolio.git",
     tags: ["TypeScript", "NextJS", "React", "TailwindCSS"],
   },
