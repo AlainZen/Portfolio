@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { useState } from "react"
 import emailjs from '@emailjs/browser'
 
-emailjs.init("aL9Er_sw1ayqfy3DG");
+emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
 
 export default function ContactForm() {
   const [pending, setPending] = useState(false)
@@ -37,8 +37,8 @@ export default function ContactForm() {
       });
       
       const response = await emailjs.send(
-        "service_temw44h", 
-        "template_zuj6j5f",
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
         {
           from_name: formData.name,
           from_email: formData.email,

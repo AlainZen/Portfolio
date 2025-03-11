@@ -68,6 +68,13 @@ const projects = [
     link: "https://github.com/AlainZen/EmotionAnimation",
     tags: ["HTML", "CSS", "JavaScript"],
     },
+    {
+      title: "Pong Raseberry",
+      description: "Jeu de Pong en Python avec Raspberry Pi et écran LCD.",
+      image: "P_Pong.png",
+      link: "https://github.com/AlainZen/Pong_Pico.git",
+      tags: ["Python"],
+    },
 ]
 
 const allTags = ["Tous", "SASS", "Python", "React", "JavaScript"]
