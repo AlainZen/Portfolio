@@ -38,7 +38,6 @@ export default function RootLayout({
                 <AnimatedButton href="/about">À propos</AnimatedButton>
                 <AnimatedButton href="/projects">Projets</AnimatedButton>
                 <AnimatedButton href="/#contact">Contact</AnimatedButton>
-                <AnimatedButton href="/cv">CV Interactif</AnimatedButton>
               </nav>
             </div>
           </header>
