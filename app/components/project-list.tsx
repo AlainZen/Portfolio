@@ -12,13 +12,14 @@ const projects = [
     link: "https://github.com/AlainZen/Project_HarryPotterTCG",
     tags: ["JavaScript", "Prisma", "NodeJS"],
   },
-  {
+   {
     title: "Concept Site Animalier",
     description: "Concept pour un site animalier créé en utilisant SASS pour un design élégant et moderne.",
     image: "/placeholder.svg?height=400&width=600",
     link: "https://github.com/AlainZen/Projet_SCSS",
-    tags: ["SASS", "JavaScript"],
+    tags: ["SASS", "JavaScript", "Vitrine"],
   },
+
   {
     title: "Led Connectée Harry Potter TCG",
     description: "Projet IoT Harry Potter avec LED interactive selon la maison choisie.",
@@ -59,15 +60,15 @@ const projects = [
     description: "Portfolio en TypeScript avec NextJS, React et TailwindCSS.",
     image: "P_Portfolio.png",
     link: "https://github.com/AlainZen/Portfolio.git",
-    tags: ["TypeScript", "NextJS", "React", "TailwindCSS"],
+    tags: ["TypeScript", "NextJS", "React", "TailwindCSS", "Vitrine"],
   },
   {
     title: "Site Creativ Development",
     description: "Concept de site créatif, exprimer des émotions et des idées à travers le design.",
     image: "P_crea.png",
     link: "https://github.com/AlainZen/EmotionAnimation",
-    tags: ["HTML", "CSS", "JavaScript"],
-    },
+    tags: ["HTML", "CSS", "JavaScript", "Vitrine"],
+  },
     {
       title: "Pong Raseberry",
       description: "Jeu de Pong en Python avec Raspberry Pi et écran LCD.",
@@ -77,10 +78,10 @@ const projects = [
     },
 ]
 
-const allTags = ["Tous", "SASS", "Python", "React", "JavaScript"]
+const allTags = ["Vitrine", "Tous", "SASS", "Python", "React", "JavaScript"]
 
 export default function ProjectList() {
-  const [selectedTag, setSelectedTag] = useState<string | null>("Tous")
+  const [selectedTag, setSelectedTag] = useState<string | null>("Vitrine")
 
   const filteredProjects =
     selectedTag === "Tous" ? projects : projects.filter((project) => project.tags.includes(selectedTag as string))
@@ -89,7 +90,11 @@ export default function ProjectList() {
     <div>
       <div className="mb-6 flex flex-wrap gap-2">
         {allTags.map((tag) => (
-          <Button key={tag} variant={selectedTag === tag ? "default" : "outline"} onClick={() => setSelectedTag(tag)}>
+          <Button
+            key={tag}
+            variant={selectedTag === tag ? "default" : "outline"}
+            onClick={() => setSelectedTag(tag)}
+          >
             {tag}
           </Button>
         ))}
