@@ -5,7 +5,7 @@ Ce portfolio a été développé avec des technologies modernes pour présenter 
 
 ## 🔗 Informations
 - **Nom et Prénom** : Alain Sliman
-- **Site déployé** : [Accéder au portfolio](https://portfolioalain.vercel.app/)
+- **Site déployé** : [Accéder au portfolio](https://www.sliman.dev/)
 - **GitHub** : [Voir le dépôt](https://github.com/AlainZen/Portfolio)
 
 ## 🛠️ Technologies utilisées
