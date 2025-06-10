@@ -35,13 +35,21 @@ const proTimeline: Event[] = [
     location: "Paris"
   },
   {
-    date: "Avril 2025 - Alternance (à venir)",
+    date: "Septembre 2025 - Alternance (à venir)",
     title: "Développeur Fullstack / DevOps",
     company: "Entreprise en cours de sélection",
     description: "Missions prévues : développement d'apps React/.NET ou Python, CI/CD, sécurité.",
     icon: <Briefcase className="w-5 h-5" />,
     type: 'work',
     location: "Paris"
+  },
+  {
+    date: "Avril 2025 - Juin 2025",
+    title: "Stage Assistant Chef de Projet",
+    company: "StrateGeek",
+    description: "Création de sites web pour clients avec WordPress, gestion de base de données, reporting et suivi analytique.",
+    icon: <Code className="w-5 h-5" />,
+    type: 'work',
   },
 ]
 
@@ -52,14 +60,6 @@ const persoTimeline: Event[] = [
     company: "Projets persos sur GitHub",
     description: "Création de jeux, applis web, bots, systèmes IoT et plus encore.",
     icon: <Code className="w-5 h-5" />,
-    type: 'project',
-  },
-  {
-    date: "2024",
-    title: "Création de GameList & site vitrine",
-    company: "Freelance",
-    description: "WordPress avancé, design responsive, gestion des utilisateurs et intégration API.",
-    icon: <Palette className="w-5 h-5" />,
     type: 'project',
   },
   {
@@ -104,18 +104,18 @@ const getTypeColor = (type: Event['type']) => {
   }
 }
 
-const getTypeBg = (type: Event['type']) => {
+const getTypeBorderColor = (type: Event['type']) => {
   switch (type) {
     case 'education':
-      return 'bg-blue-500/10 border-blue-500/20'
+      return 'border-l-blue-500'
     case 'work':
-      return 'bg-green-500/10 border-green-500/20'
+      return 'border-l-green-500'
     case 'project':
-      return 'bg-purple-500/10 border-purple-500/20'
+      return 'border-l-purple-500'
     case 'experience':
-      return 'bg-orange-500/10 border-orange-500/20'
+      return 'border-l-orange-500'
     default:
-      return 'bg-gray-500/10 border-gray-500/20'
+      return 'border-l-gray-500'
   }
 }
 
@@ -175,8 +175,7 @@ export default function CareerTabs() {
           transition={{ duration: 0.3 }}
           className="relative"
         >
-          {/* Ligne de timeline */}
-          <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-primary/20 via-primary/50 to-primary/20" />
+
           
           <div className="space-y-8">
             {timeline.map((event, index) => (
@@ -190,30 +189,27 @@ export default function CareerTabs() {
                 {/* Icône avec animation */}
                 <div className="relative flex-shrink-0">
                   <motion.div
-                    className={cn(
-                      "w-16 h-16 rounded-xl border-2 flex items-center justify-center text-white relative overflow-hidden",
-                      getTypeBg(event.type)
-                    )}
+                    className="w-16 h-16 rounded-xl border-2 flex items-center justify-center text-white relative overflow-hidden bg-background shadow-lg"
                     whileHover={{ scale: 1.05 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     <div className={cn(
-                      "absolute inset-0 bg-gradient-to-br opacity-80",
+                      "absolute inset-0 bg-gradient-to-br opacity-90",
                       getTypeColor(event.type)
                     )} />
                     <div className="relative z-10">
                       {event.icon}
                     </div>
                   </motion.div>
-                  
-                  {/* Point de connexion */}
-                  <div className="absolute top-1/2 -translate-y-1/2 -left-2 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg" />
                 </div>
 
                 {/* Contenu */}
                 <div className="flex-1 min-w-0">
                   <motion.div
-                    className="bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border/50 shadow-sm hover:shadow-md transition-all duration-300 group-hover:border-primary/20"
+                    className={cn(
+                      "bg-card/50 backdrop-blur-sm rounded-xl p-6 border-l-4 border-y border-r border-border/50 shadow-sm hover:shadow-md transition-all duration-300 group-hover:border-l-4",
+                      getTypeBorderColor(event.type)
+                    )}
                     whileHover={{ y: -2 }}
                   >
                     {/* Header */}

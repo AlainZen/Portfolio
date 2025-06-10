@@ -211,12 +211,12 @@ export default function TechStack() {
           </div>
           <div className="w-px h-8 bg-slate-700" />
           <div className="text-center">
-            <div className="text-2xl font-bold text-pink-400">3+</div>
+            <div className="text-2xl font-bold text-pink-400">2+</div>
             <div className="text-sm text-slate-400">Années d'exp</div>
           </div>
           <div className="w-px h-8 bg-slate-700" />
           <div className="text-center">
-            <div className="text-2xl font-bold text-blue-400">50+</div>
+            <div className="text-2xl font-bold text-blue-400">15+</div>
             <div className="text-sm text-slate-400">Projets</div>
           </div>
         </div>
