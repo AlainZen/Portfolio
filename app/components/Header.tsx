@@ -15,7 +15,13 @@ const navItems = [
 const scrollToSection = (href: string) => {
   const element = document.querySelector(href)
   if (element) {
-    element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    const headerHeight = 80 // Hauteur approximative du header
+    const elementPosition = element.offsetTop - headerHeight
+    
+    window.scrollTo({
+      top: elementPosition,
+      behavior: 'smooth'
+    })
   }
 }
 
@@ -23,8 +29,13 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const handleNavClick = (href: string) => {
-    scrollToSection(href)
+    // Fermer le menu d'abord
     setIsMenuOpen(false)
+    
+    // Attendre que l'animation de fermeture se termine avant de scroller
+    setTimeout(() => {
+      scrollToSection(href)
+    }, 300) // 300ms = durée de l'animation de fermeture
   }
 
   return (
