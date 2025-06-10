@@ -12,6 +12,7 @@ import {
   SiExpress,
   SiSymfony,
   SiMongodb,
+  SiMysql,
   SiHtml5,
   SiCss3,
   SiSass,
@@ -26,39 +27,40 @@ const technologies = [
   {
     category: "Langages de programmation",
     skills: [
-      { name: "JavaScript", icon: SiJavascript, color: "#f7df1e", level: 90 },
-      { name: "TypeScript", icon: SiTypescript, color: "#3178c6", level: 85 },
-      { name: "Python", icon: SiPython, color: "#3776ab", level: 80 },
-      { name: "Java", icon: FaJava, color: "#f89820", level: 75 },
-      { name: "PHP", icon: SiPhp, color: "#8892be", level: 70 },
+      { name: "JavaScript", icon: SiJavascript, color: "#f7df1e" },
+      { name: "TypeScript", icon: SiTypescript, color: "#3178c6" },
+      { name: "Python", icon: SiPython, color: "#3776ab" },
+      { name: "Java", icon: FaJava, color: "#f89820" },
+      { name: "PHP", icon: SiPhp, color: "#8892be" },
     ],
   },
   {
     category: "Frontend",
     skills: [
-      { name: "React", icon: SiReact, color: "#61dafb", level: 90 },
-      { name: "Next.js", icon: SiNextdotjs, color: "#ffffff", level: 85 },
-      { name: "HTML5", icon: SiHtml5, color: "#e34f26", level: 95 },
-      { name: "CSS3", icon: SiCss3, color: "#1572b6", level: 90 },
-      { name: "SASS", icon: SiSass, color: "#cd6799", level: 80 },
+      { name: "React", icon: SiReact, color: "#61dafb" },
+      { name: "Next.js", icon: SiNextdotjs, color: "#ffffff" },
+      { name: "HTML5", icon: SiHtml5, color: "#e34f26" },
+      { name: "CSS3", icon: SiCss3, color: "#1572b6" },
+      { name: "SASS", icon: SiSass, color: "#cd6799" },
     ],
   },
   {
     category: "Backend",
     skills: [
-      { name: "Node.js", icon: SiNodedotjs, color: "#339933", level: 85 },
-      { name: "Express", icon: SiExpress, color: "#ffffff", level: 80 },
-      { name: "Symfony", icon: SiSymfony, color: "#ffffff", level: 70 },
-      { name: "MongoDB", icon: SiMongodb, color: "#47a248", level: 75 },
+      { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
+      { name: "Express", icon: SiExpress, color: "#ffffff" },
+      { name: "Symfony", icon: SiSymfony, color: "#ffffff" },
+      { name: "MongoDB", icon: SiMongodb, color: "#47a248" },
+      { name: "MySQL", icon: SiMysql, color: "#4479a1" },
     ],
   },
   {
     category: "Outils / Design",
     skills: [
-      { name: "Git", icon: SiGit, color: "#f05032", level: 90 },
-      { name: "Figma", icon: SiFigma, color: "#f24e1e", level: 85 },
-      { name: "Adobe XD", icon: SiAdobexd, color: "#ff61f6", level: 80 },
-      { name: "Sketch", icon: SiSketch, color: "#f7b500", level: 75 },
+      { name: "Git", icon: SiGit, color: "#f05032" },
+      { name: "Figma", icon: SiFigma, color: "#f24e1e" },
+      { name: "Adobe XD", icon: SiAdobexd, color: "#ff61f6" },
+      { name: "Sketch", icon: SiSketch, color: "#f7b500" },
     ],
   },
 ]
@@ -81,56 +83,31 @@ const SkillCard = ({ skill, index }: { skill: any; index: number }) => (
       z: 50
     }}
   >
-    <div className="relative overflow-hidden rounded-2xl bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-4 transition-all duration-300 group-hover:border-purple-500/50 group-hover:shadow-xl group-hover:shadow-purple-500/10">
+    <div className="relative overflow-hidden rounded-2xl bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 transition-all duration-300 group-hover:border-purple-500/50 group-hover:shadow-xl group-hover:shadow-purple-500/10">
       {/* Effet de lueur au hover */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       
       {/* Animation durant le Hoover */}
       <motion.div
-        className="relative z-10 flex items-center justify-center mb-3"
+        className="relative z-10 flex items-center justify-center mb-4"
         whileHover={{ rotate: 360 }}
         transition={{ duration: 0.6 }}
       >
         <skill.icon
-          className="w-8 h-8 drop-shadow-lg"
+          className="w-10 h-10 drop-shadow-lg"
           style={{ color: skill.color }}
         />
       </motion.div>
       
       {/* Nom de la compétence */}
       <motion.h4
-        className="relative z-10 text-center text-sm font-medium text-white mb-3"
+        className="relative z-10 text-center text-sm font-medium text-white"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ delay: index * 0.1 + 0.2 }}
       >
         {skill.name}
       </motion.h4>
-      
-      {/* Barre de niveau */}
-      <div className="relative z-10 w-full bg-slate-700 rounded-full h-2 overflow-hidden">
-        <motion.div
-          className="h-full rounded-full bg-gradient-to-r from-purple-500 to-pink-500"
-          initial={{ width: 0 }}
-          whileInView={{ width: `${skill.level}%` }}
-          viewport={{ once: true }}
-          transition={{ 
-            duration: 1, 
-            delay: index * 0.1 + 0.5,
-            ease: "easeOut"
-          }}
-        />
-      </div>
-      
-      {/* Pourcentages */}
-      <motion.div
-        className="relative z-10 text-center mt-2"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ delay: index * 0.1 + 0.7 }}
-      >
-        <span className="text-xs text-slate-400">{skill.level}%</span>
-      </motion.div>
       
       {/* Particules flottantes */}
       <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -229,17 +206,17 @@ export default function TechStack() {
       >
         <div className="inline-flex items-center gap-8 px-8 py-4 bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700/50">
           <div className="text-center">
-            <div className="text-2xl font-bold text-purple-400">15+</div>
+            <div className="text-2xl font-bold text-purple-400">16+</div>
             <div className="text-sm text-slate-400">Technologies</div>
           </div>
           <div className="w-px h-8 bg-slate-700" />
           <div className="text-center">
-            <div className="text-2xl font-bold text-pink-400">3+</div>
+            <div className="text-2xl font-bold text-pink-400">2+</div>
             <div className="text-sm text-slate-400">Années d'exp</div>
           </div>
           <div className="w-px h-8 bg-slate-700" />
           <div className="text-center">
-            <div className="text-2xl font-bold text-blue-400">50+</div>
+            <div className="text-2xl font-bold text-blue-400">15+</div>
             <div className="text-sm text-slate-400">Projets</div>
           </div>
         </div>
