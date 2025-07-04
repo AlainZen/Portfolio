@@ -93,7 +93,7 @@ const projects = [
     description: "Application de gestion d'entreprise développée avec Symfony.",
     image: "P_ERP.png",
     link: "https://github.com/AlainZen/ERP-Symfony.git",
-    tags: ["Symfony", "PHP"],
+    tags: ["Symfony", "PHP", "MySQL", "twig", "TailwindCSS"],
     category: "Vitrine"
   },
 ]
