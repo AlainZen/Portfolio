@@ -22,7 +22,7 @@ const projects = [
     image: "/placeholder.svg?height=400&width=600",
     link: "https://github.com/AlainZen/Projet_SCSS",
     tags: ["SASS", "JavaScript"],
-    category: "Vitrine"
+    category: "SASS"
   },
   {
     title: "Led Connectée Harry Potter TCG",
@@ -30,7 +30,7 @@ const projects = [
     image: "/placeholder.svg?height=400&width=600",
     link: "https://github.com/AlainZen/IOT_HarryPotter",
     tags: ["Python", "NodeJS"],
-    category: "Vitrine"
+    category: "Python"
   },
   {
     title: "To-Do list Typescript",
@@ -70,7 +70,7 @@ const projects = [
     image: "P_Portfolio.png",
     link: "https://github.com/AlainZen/Portfolio.git",
     tags: ["TypeScript", "NextJS", "React", "TailwindCSS"],
-    category: "React"
+    category: "Vitrine"
   },
   {
     title: "Site Creativ Development",
@@ -87,6 +87,14 @@ const projects = [
     link: "https://github.com/AlainZen/Pong_Pico.git",
     tags: ["Python"],
     category: "Python"
+  },
+  {
+    title: "ERP-Symfony",
+    description: "Application de gestion d'entreprise développée avec Symfony.",
+    image: "P_ERP.png",
+    link: "https://github.com/AlainZen/ERP-Symfony.git",
+    tags: ["Symfony", "PHP"],
+    category: "PHP"
   },
 ]
 
