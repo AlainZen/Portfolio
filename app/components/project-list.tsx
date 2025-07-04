@@ -94,7 +94,7 @@ const projects = [
     image: "P_ERP.png",
     link: "https://github.com/AlainZen/ERP-Symfony.git",
     tags: ["Symfony", "PHP"],
-    category: "PHP"
+    category: "Vitrine"
   },
 ]
 
