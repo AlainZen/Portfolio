@@ -44,10 +44,10 @@ const proTimeline: Event[] = [
     location: "Paris"
   },
   {
-    date: "Avril 2025 - Juin 2025",
-    title: "Stage Assistant Chef de Projet",
-    company: "StrateGeek",
-    description: "Création de sites web pour clients avec WordPress, gestion de base de données, reporting et suivi analytique.",
+    date: "Mars 2025 - Juillet 2025",
+    title: "Développeur Back-end",
+    company: "BRED Banque Populaire",
+    description: "Développement d'API backend pour des services internes, gestion des bases de données relationnelles et suivi des performances via outils d'analyse.",
     icon: <Code className="w-5 h-5" />,
     type: 'work',
   },
