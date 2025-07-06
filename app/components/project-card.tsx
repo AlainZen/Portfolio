@@ -4,10 +4,11 @@ import Image from "next/image"
 import Link from "next/link"
 import {
   FaReact, FaPython, FaPhp, FaSass, FaNodeJs,
-  FaHtml5, FaCss3Alt, FaJs, FaGitAlt,
+  FaHtml5, FaCss3Alt, FaJs, FaGitAlt, FaJava, FaSymfony
 } from "react-icons/fa"
 import {
-  SiTypescript, SiNextdotjs, SiTailwindcss, SiPrisma
+  SiTypescript, SiNextdotjs, SiTailwindcss, SiPrisma,
+  SiMysql, SiSwagger
 } from "react-icons/si"
 
 interface ProjectCardProps {
@@ -33,6 +34,13 @@ const tagIcons: Record<string, JSX.Element> = {
   CSS: <FaCss3Alt className="text-blue-300" />,
   Prisma: <SiPrisma className="text-violet-400" />,
   Git: <FaGitAlt className="text-orange-500" />,
+  Java: <FaJava className="text-red-600" />,
+  "Spring Boot": <FaJava className="text-green-400" />,
+  Symfony: <FaSymfony className="text-gray-300" />,
+  MySQL: <SiMysql className="text-blue-500" />,
+  Swagger: <SiSwagger className="text-green-500" />,
+  H2: <span className="text-sky-400 font-bold">H2</span>,
+  twig: <span className="text-orange-300 font-bold">Twig</span>,
 }
 
 export default function ProjectCard({
@@ -65,7 +73,7 @@ export default function ProjectCard({
               key={tag}
               className="inline-flex items-center gap-1 rounded-full bg-neutral-800 px-3 py-1 text-xs font-medium text-white ring-1 ring-neutral-700"
             >
-              {tagIcons[tag] || null}
+              {tagIcons[tag] ?? null}
               {tag}
             </span>
           ))}

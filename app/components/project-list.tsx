@@ -37,7 +37,7 @@ const projects = [
     description: "TodoList en TypeScript avec authentification et stockage en localStorage.",
     image: "/placeholder.svg?height=400&width=600",
     link: "https://github.com/AlainZen/To-Do-List-TypeScript",
-    tags: ["Typescript"],
+    tags: ["TypeScript"],
     category: "JavaScript"
   },
   {
@@ -106,7 +106,7 @@ const projects = [
   },
 ]
 
-const allTags = ["Vitrine", "Tous", "SASS", "Python", "React", "JavaScript", "PHP"]
+const allTags = ["Vitrine", "Tous", "SASS", "Python", "React", "JavaScript", "PHP", "Java", "Symfony"]
 
 export default function ProjectList() {
   const [selectedTag, setSelectedTag] = useState<string>("Vitrine")
