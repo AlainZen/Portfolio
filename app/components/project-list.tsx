@@ -96,6 +96,14 @@ const projects = [
     tags: ["Symfony", "PHP", "MySQL", "twig", "TailwindCSS"],
     category: "Vitrine"
   },
+  {
+    title: "ERP-Okayo Test",
+    description: "Application de gestion de factures développée avec Java Spring Boot.",
+    image: "Placeholder.svg?height=400&width=600",
+    link: "https://github.com/AlainZen/Okayo_ERP_Test.git",
+    tags: ["Java", "Spring Boot", "Maven", "Swagger", "H2"],
+    category: "Java"
+  },
 ]
 
 const allTags = ["Vitrine", "Tous", "SASS", "Python", "React", "JavaScript", "PHP"]
