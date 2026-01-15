@@ -35,10 +35,10 @@ const proTimeline: Event[] = [
     location: "Paris"
   },
   {
-    date: "Septembre 2025 - Alternance (à venir)",
-    title: "Développeur Fullstack / DevOps",
-    company: "Entreprise en cours de sélection",
-    description: "Missions prévues : développement d'apps React/.NET ou Python, CI/CD, sécurité.",
+    date: "Septembre 2025 - Aujourd'hui",
+    title: "Webmaster Intranet",
+    company: "DGFIP",
+    description: "Gestion et maintenance du site intranet, création de contenu, amélioration de l'expérience utilisateur et support technique.",
     icon: <Briefcase className="w-5 h-5" />,
     type: 'work',
     location: "Paris"

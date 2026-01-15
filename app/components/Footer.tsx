@@ -49,7 +49,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gradient-to-b from-background to-muted border-t border-border">
       <div className="max-w-6xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           
@@ -65,7 +65,7 @@ export default function Footer() {
               Sliman Alain
             </motion.h3>
             <motion.p 
-              className="text-gray-400 leading-relaxed"
+              className="text-muted-foreground leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -98,7 +98,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <motion.button
                     onClick={() => scrollToSection(link.href)}
-                    className="text-gray-400 hover:text-white transition-colors duration-300"
+                    className="text-muted-foreground hover:text-foreground transition-colors duration-300"
                     whileHover={{ x: 5 }}
                     transition={{ duration: 0.2 }}
                   >
@@ -133,7 +133,7 @@ export default function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`p-2 rounded-lg bg-gray-800 text-gray-400 transition-all duration-300 ${social.color}`}
+                  className={`p-2 rounded-lg bg-accent text-muted-foreground hover:text-foreground transition-all duration-300 ${social.color}`}
                   whileHover={{ y: -2, scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0, y: 20 }}
@@ -151,7 +151,7 @@ export default function Footer() {
 
         {/* Séparateur */}
         <motion.div 
-          className="my-8 h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent"
+          className="my-8 h-px bg-gradient-to-r from-transparent via-border to-transparent"
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
@@ -160,7 +160,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <motion.div 
-          className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-400"
+          className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

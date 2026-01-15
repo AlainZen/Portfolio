@@ -104,9 +104,25 @@ const projects = [
     tags: ["Java", "Spring Boot", "Maven", "Swagger", "H2"],
     category: "Java"
   },
+  {
+    title: "Zenify",
+    description: "Copie de Spotify permettant de créer des playlists, mettre des likes, partager des playlists, poster des sons et les écouter.",
+    image: "/placeholder.svg?height=400&width=600",
+    link: "", // Lien Git à ajouter
+    tags: ["Laravel", "Vue"],
+    category: "Vitrine"
+  },
+  {
+    title: "Kendrick Lamar Site",
+    description: "Site vitrine pour Kendrick Lamar très stylé.",
+    image: "/placeholder.svg?height=400&width=600",
+    link: "", // Lien Git à ajouter
+    tags: ["HTML", "CSS", "JavaScript"],
+    category: "Vitrine"
+  },
 ]
 
-const allTags = ["Vitrine", "Tous", "SASS", "Python", "React", "JavaScript", "PHP", "Java", "Symfony"]
+const allTags = ["Vitrine", "Tous", "Laravel", "Vue", "SASS", "Python", "React", "JavaScript", "PHP", "Java", "Symfony"]
 
 export default function ProjectList() {
   const [selectedTag, setSelectedTag] = useState<string>("Vitrine")

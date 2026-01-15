@@ -15,6 +15,7 @@ import CareerTabs from "./components/career-tabs"
 import ProjectList from "./components/project-list"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
+import AnimatedBackground from "./components/AnimatedBackground"
 
 // Types
 interface SocialButtonProps {
@@ -118,6 +119,7 @@ export default function Page() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <AnimatedBackground />
       <Header />
       
       <main className="container mx-auto px-4 sm:px-6 lg:px-8">

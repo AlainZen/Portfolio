@@ -3,6 +3,7 @@
 import React, { useState } from "react"
 import { Menu, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 const navItems = [
   { href: "#about", label: "À propos" },
@@ -13,7 +14,7 @@ const navItems = [
 ]
 
 const scrollToSection = (href: string) => {
-  const element = document.querySelector(href)
+  const element = document.querySelector(href) as HTMLElement
   if (element) {
     const headerHeight = 80 // Hauteur approximative du header
     const elementPosition = element.offsetTop - headerHeight
@@ -40,7 +41,7 @@ export default function Header() {
 
   return (
     <motion.header 
-      className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200"
+      className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border shadow-sm"
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -63,7 +64,7 @@ export default function Header() {
               <motion.button
                 key={item.href}
                 onClick={() => handleNavClick(item.href)}
-                className="relative text-gray-600 hover:text-gray-900 transition-colors duration-300 font-medium"
+                className="relative text-muted-foreground hover:text-foreground transition-colors duration-300 font-medium"
                 whileHover="hover"
                 initial="rest"
               >
@@ -78,38 +79,42 @@ export default function Header() {
                 />
               </motion.button>
             ))}
+            <ThemeToggle />
           </div>
 
           {/* Menu Mobile */}
-          <motion.button
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            whileTap={{ scale: 0.95 }}
-            aria-label="Ouvrir le menu"
-          >
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={isMenuOpen ? "close" : "menu"}
-                initial={{ rotate: -90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                {isMenuOpen ? (
-                  <X className="h-6 w-6 text-gray-700" />
-                ) : (
-                  <Menu className="h-6 w-6 text-gray-700" />
-                )}
-              </motion.div>
-            </AnimatePresence>
-          </motion.button>
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
+            <motion.button
+              className="p-2 rounded-lg hover:bg-accent transition-colors"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              whileTap={{ scale: 0.95 }}
+              aria-label="Ouvrir le menu"
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={isMenuOpen ? "close" : "menu"}
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {isMenuOpen ? (
+                    <X className="h-6 w-6 text-foreground" />
+                  ) : (
+                    <Menu className="h-6 w-6 text-foreground" />
+                  )}
+                </motion.div>
+              </AnimatePresence>
+            </motion.button>
+          </div>
         </div>
 
         {/* Menu Mobile Dropdown */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
-              className="md:hidden mt-4 py-4 border-t border-gray-200"
+              className="md:hidden mt-4 py-4 border-t border-border"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
@@ -120,7 +125,7 @@ export default function Header() {
                   <motion.button
                     key={item.href}
                     onClick={() => handleNavClick(item.href)}
-                    className="text-left text-gray-600 hover:text-gray-900 transition-colors duration-300 py-2 font-medium"
+                    className="text-left text-muted-foreground hover:text-foreground transition-colors duration-300 py-2 font-medium"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ 
                       opacity: 1, 

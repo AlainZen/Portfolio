@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import {
   FaReact, FaPython, FaPhp, FaSass, FaNodeJs,
-  FaHtml5, FaCss3Alt, FaJs, FaGitAlt, FaJava, FaSymfony
+  FaHtml5, FaCss3Alt, FaJs, FaGitAlt, FaJava, FaSymfony, FaLaravel, FaVuejs
 } from "react-icons/fa"
 import {
   SiTypescript, SiNextdotjs, SiTailwindcss, SiPrisma,
@@ -41,6 +41,8 @@ const tagIcons: Record<string, JSX.Element> = {
   Swagger: <SiSwagger className="text-green-500" />,
   H2: <span className="text-sky-400 font-bold">H2</span>,
   twig: <span className="text-orange-300 font-bold">Twig</span>,
+  Laravel: <FaLaravel className="text-red-500" />,
+  Vue: <FaVuejs className="text-emerald-400" />,
 }
 
 export default function ProjectCard({
