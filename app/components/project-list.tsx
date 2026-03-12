@@ -3,7 +3,7 @@
 import { useState } from "react"
 import ProjectCard from "./project-card"
 import { Button } from "@/components/ui/button"
-import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog"
+import { Dialog, DialogTrigger, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { Badge } from "@/components/ui/badge"
 import { Github } from "lucide-react"
 
@@ -108,7 +108,7 @@ const projects = [
     title: "Zenify",
     description: "Copie de Spotify permettant de créer des playlists, mettre des likes, partager des playlists, poster des sons et les écouter.",
     image: "/placeholder.svg?height=400&width=600",
-    link: "", // Lien Git à ajouter
+    link: "https://github.com/AlainZen/Zenify",
     tags: ["Laravel", "Vue"],
     category: "Vitrine"
   },
@@ -116,7 +116,7 @@ const projects = [
     title: "Kendrick Lamar Site",
     description: "Site vitrine pour Kendrick Lamar très stylé.",
     image: "/placeholder.svg?height=400&width=600",
-    link: "", // Lien Git à ajouter
+    link: "https://github.com/AlainZen/Echoes_KendrickLamar",  
     tags: ["HTML", "CSS", "JavaScript"],
     category: "Vitrine"
   },
@@ -163,7 +163,9 @@ export default function ProjectList() {
             <DialogContent className="max-w-xl">
               {selectedProject && (
                 <>
-                  <h3 className="text-xl font-bold mb-2">{selectedProject.title}</h3>
+                  <DialogTitle className="text-xl font-bold mb-2">
+                    {selectedProject.title}
+                  </DialogTitle>
                   <img
                     src={selectedProject.image}
                     alt={selectedProject.title}

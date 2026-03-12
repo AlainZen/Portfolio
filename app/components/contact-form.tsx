@@ -7,18 +7,34 @@ import { Textarea } from "@/components/ui/textarea"
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { Send, Mail, User, MessageSquare } from "lucide-react"
-import emailjs from '@emailjs/browser'
+import emailjs from "@emailjs/browser"
 
-emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
+const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+
+if (EMAILJS_PUBLIC_KEY) {
+  emailjs.init(EMAILJS_PUBLIC_KEY)
+} else {
+  console.warn(
+    "[ContactForm] Missing NEXT_PUBLIC_EMAILJS_PUBLIC_KEY env var; EmailJS will not be initialized."
+  )
+}
 
 export default function ContactForm() {
   const [pending, setPending] = useState(false)
   const [message, setMessage] = useState("")
+  const [messageType, setMessageType] = useState<"success" | "error">("success")
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: ""
   })
+
+  const isEmailJsConfigured =
+    Boolean(EMAILJS_PUBLIC_KEY) &&
+    Boolean(EMAILJS_SERVICE_ID) &&
+    Boolean(EMAILJS_TEMPLATE_ID)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -30,30 +46,58 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setPending(true)
-    
+
+    if (!EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) {
+      console.error("[ContactForm] Missing EmailJS configuration", {
+        EMAILJS_PUBLIC_KEY,
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+      })
+      setMessageType("error")
+      setMessage(
+        "Le service d'envoi d'email n'est pas configuré. Vérifiez vos variables d'environnement."
+      )
+      setPending(false)
+      return
+    }
+
     try {
       console.log("Tentative d'envoi d'email avec:", {
-        serviceId: "service_temw44h",
-        templateId: "template_zuj6j5f",
-        data: formData
-      });
-      
+        serviceId: EMAILJS_SERVICE_ID,
+        templateId: EMAILJS_TEMPLATE_ID,
+        data: formData,
+      })
+
       const response = await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
         {
           from_name: formData.name,
           from_email: formData.email,
-          message: formData.message
+          message: formData.message,
         }
-      );
-      
-      console.log("Réponse EmailJS:", response);
+      )
+
+      console.log("Réponse EmailJS:", response)
+      setMessageType("success")
       setMessage("Merci pour votre message ! Je vous répondrai bientôt.")
       setFormData({ name: "", email: "", message: "" })
     } catch (error) {
-      console.error("Erreur d'envoi:", error);
-      setMessage("Une erreur s'est produite. Veuillez réessayer.")
+      // EmailJS errors are often non-enumerable; stringify with property names to get details.
+      console.error(
+        "Erreur d'envoi:",
+        error,
+        JSON.stringify(error, Object.getOwnPropertyNames(error), 2)
+      )
+
+      const err = error as any
+      const errorSnippet =
+        err?.text || err?.message || err?.status || "(aucune info)"
+
+      setMessageType("error")
+      setMessage(
+        `Une erreur s'est produite (${errorSnippet}). Veuillez réessayer.`
+      )
     } finally {
       setPending(false)
     }
@@ -103,6 +147,17 @@ export default function ContactForm() {
             <p className="text-muted-foreground">Une question ? Un projet ? N'hésitez pas !</p>
           </div>
           
+          {!isEmailJsConfigured && (
+            <div className="rounded-lg border border-red-500/20 bg-red-500/10 p-4 text-sm text-red-700 dark:text-red-200">
+              <p className="font-semibold">Le service d'envoi de mails n'est pas configuré.</p>
+              <p className="mt-1">
+                Ajoute les variables d'environnement <code className="rounded bg-slate-100 px-1 py-0.5 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-200">
+                NEXT_PUBLIC_EMAILJS_PUBLIC_KEY, NEXT_PUBLIC_EMAILJS_SERVICE_ID, NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+                </code> et redémarre le serveur.
+              </p>
+            </div>
+          )}
+
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
               <label htmlFor="name" className="block text-sm font-medium flex items-center gap-2">
@@ -117,6 +172,7 @@ export default function ContactForm() {
                 className="transition-all duration-300 focus:scale-[1.02]"
                 placeholder="Votre nom"
                 required 
+                disabled={!isEmailJsConfigured || pending}
               />
             </div>
             <div className="space-y-2">
@@ -133,6 +189,7 @@ export default function ContactForm() {
                 className="transition-all duration-300 focus:scale-[1.02]"
                 placeholder="votre@email.com"
                 required 
+                disabled={!isEmailJsConfigured || pending}
               />
             </div>
             <div className="space-y-2">
@@ -148,12 +205,13 @@ export default function ContactForm() {
                 className="transition-all duration-300 focus:scale-[1.02] min-h-[120px]"
                 placeholder="Votre message..."
                 required 
+                disabled={!isEmailJsConfigured || pending}
               />
             </div>
             <Button 
               type="submit" 
               className="w-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 transition-all duration-300 group" 
-              disabled={pending}
+              disabled={!isEmailJsConfigured || pending}
             >
               {pending ? (
                 <span className="flex items-center gap-2">
@@ -173,10 +231,14 @@ export default function ContactForm() {
               )}
             </Button>
             {message && (
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-sm text-center mt-4 p-3 rounded-lg bg-green-500/10 text-green-600 dark:text-green-400 border border-green-500/20"
+                className={`text-sm text-center mt-4 p-3 rounded-lg border ${
+                  messageType === "error"
+                    ? "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20"
+                    : "bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20"
+                }`}
               >
                 {message}
               </motion.p>
