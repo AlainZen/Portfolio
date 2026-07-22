@@ -36,9 +36,9 @@ const proTimeline: Event[] = [
   },
   {
     date: "Septembre 2025 - Aujourd'hui",
-    title: "Webmaster Intranet",
+    title: "Webmaster Intranet (Alternance)",
     company: "DGFIP",
-    description: "Gestion et maintenance du site intranet, création de contenu, amélioration de l'expérience utilisateur et support technique.",
+    description: "Développement, intégration et mise en production de fonctionnalités sur l'intranet sous Drupal : modules personnalisés, intégration de thèmes, configuration du CMS et des droits utilisateurs. Optimisation des performances et de la sécurité, audit de code, analyse et résolution d'anomalies.",
     icon: <Briefcase className="w-5 h-5" />,
     type: 'work',
     location: "Paris"
@@ -89,33 +89,18 @@ const persoTimeline: Event[] = [
   },
 ]
 
-const getTypeColor = (type: Event['type']) => {
+const getTypeAccent = (type: Event['type']) => {
   switch (type) {
     case 'education':
-      return 'from-blue-500 to-indigo-600'
+      return { text: 'text-sky-400', bg: 'bg-sky-500/10', bar: 'bg-sky-500' }
     case 'work':
-      return 'from-green-500 to-emerald-600'
+      return { text: 'text-teal-400', bg: 'bg-teal-500/10', bar: 'bg-teal-500' }
     case 'project':
-      return 'from-purple-500 to-pink-600'
+      return { text: 'text-violet-400', bg: 'bg-violet-500/10', bar: 'bg-violet-500' }
     case 'experience':
-      return 'from-orange-500 to-red-600'
+      return { text: 'text-amber-400', bg: 'bg-amber-500/10', bar: 'bg-amber-500' }
     default:
-      return 'from-gray-500 to-gray-600'
-  }
-}
-
-const getTypeBorderColor = (type: Event['type']) => {
-  switch (type) {
-    case 'education':
-      return 'border-l-blue-500'
-    case 'work':
-      return 'border-l-green-500'
-    case 'project':
-      return 'border-l-purple-500'
-    case 'experience':
-      return 'border-l-orange-500'
-    default:
-      return 'border-l-gray-500'
+      return { text: 'text-muted-foreground', bg: 'bg-muted', bar: 'bg-muted-foreground' }
   }
 }
 
@@ -177,74 +162,81 @@ export default function CareerTabs() {
         >
 
           
-          <div className="space-y-8">
-            {timeline.map((event, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="relative flex gap-6 group"
-              >
-                {/* Icône avec animation */}
-                <div className="relative flex-shrink-0">
-                  <motion.div
-                    className="w-16 h-16 rounded-xl border-2 flex items-center justify-center text-white relative overflow-hidden bg-background shadow-lg"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <div className={cn(
-                      "absolute inset-0 bg-gradient-to-br opacity-90",
-                      getTypeColor(event.type)
-                    )} />
-                    <div className="relative z-10">
-                      {event.icon}
-                    </div>
-                  </motion.div>
-                </div>
+          <div className="relative space-y-6 sm:space-y-8">
+            {/* Ligne verticale continue */}
+            <div className="absolute left-[19px] top-2 bottom-2 w-px bg-border sm:left-[23px]" />
 
-                {/* Contenu */}
-                <div className="flex-1 min-w-0">
-                  <motion.div
-                    className={cn(
-                      "bg-card/50 backdrop-blur-sm rounded-xl p-6 border-l-4 border-y border-r border-border/50 shadow-sm hover:shadow-md transition-all duration-300 group-hover:border-l-4",
-                      getTypeBorderColor(event.type)
-                    )}
-                    whileHover={{ y: -2 }}
-                  >
-                    {/* Header */}
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Calendar className="w-4 h-4" />
+            {timeline.map((event, index) => {
+              const accent = getTypeAccent(event.type)
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  className="relative flex gap-4 sm:gap-6 group"
+                >
+                  {/* Point de la timeline */}
+                  <div className="relative z-10 flex-shrink-0">
+                    <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-background ring-4 ring-background transition-transform duration-300 group-hover:scale-105">
+                      <div
+                        className={cn(
+                          "absolute inset-0 rounded-full",
+                          accent.bg
+                        )}
+                      />
+                      <div className={cn("relative", accent.text)}>
+                        {event.icon}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Contenu */}
+                  <div className="flex-1 min-w-0 pb-1">
+                    <motion.div
+                      className="relative overflow-hidden rounded-xl border border-border/50 bg-card/40 backdrop-blur-sm p-4 sm:p-6 transition-all duration-300 hover:border-border hover:bg-card/70"
+                      whileHover={{ y: -2 }}
+                    >
+                      {/* Rideau d'accent qui découle de l'icône au survol */}
+                      <span
+                        className={cn(
+                          "absolute left-0 top-0 h-full w-1 origin-top scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100",
+                          accent.bar
+                        )}
+                      />
+
+                      {/* Header */}
+                      <div className="flex flex-wrap items-center gap-2 mb-2 text-xs sm:text-sm text-muted-foreground">
+                        <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                         <span className="font-medium">{event.date}</span>
                         {event.location && (
                           <>
                             <span className="text-border">•</span>
-                            <MapPin className="w-4 h-4" />
+                            <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                             <span>{event.location}</span>
                           </>
                         )}
                       </div>
-                    </div>
 
-                    {/* Titre */}
-                    <h3 className="text-lg font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
-                      {event.title}
-                    </h3>
-                    
-                    {/* Entreprise */}
-                    <p className="text-sm font-medium text-primary mb-3">
-                      {event.company}
-                    </p>
-                    
-                    {/* Description */}
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {event.description}
-                    </p>
-                  </motion.div>
-                </div>
-              </motion.div>
-            ))}
+                      {/* Titre */}
+                      <h3 className="text-base sm:text-lg font-semibold text-foreground mb-1">
+                        {event.title}
+                      </h3>
+
+                      {/* Entreprise */}
+                      <p className={cn("text-sm font-medium mb-2 sm:mb-3", accent.text)}>
+                        {event.company}
+                      </p>
+
+                      {/* Description */}
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {event.description}
+                      </p>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              )
+            })}
           </div>
         </motion.div>
       </AnimatePresence>

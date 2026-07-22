@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { Github, Linkedin, Mail, Twitter, Heart } from "lucide-react"
+import { Github, Linkedin, Mail, Twitter } from "lucide-react"
 import { motion } from "framer-motion"
 
 const socialLinks = [
@@ -56,7 +56,7 @@ export default function Footer() {
           {/* Section À propos */}
           <div className="space-y-4">
             <motion.h3 
-              className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+              className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -159,30 +159,14 @@ export default function Footer() {
         />
 
         {/* Copyright */}
-        <motion.div 
-          className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground"
+        <motion.div
+          className="text-center text-sm text-muted-foreground"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="flex items-center gap-2">
-            <span>© {currentYear} Sliman Alain. Tous droits réservés.</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span>Fait avec</span>
-            <motion.div
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ 
-                duration: 1.5,
-                repeat: Infinity,
-                repeatType: "reverse"
-              }}
-            >
-              <Heart className="h-4 w-4 text-red-500 fill-current" />
-            </motion.div>
-            <span>et beaucoup de café ☕</span>
-          </div>
+          <span>© {currentYear} Sliman Alain. Tous droits réservés.</span>
         </motion.div>
       </div>
     </footer>

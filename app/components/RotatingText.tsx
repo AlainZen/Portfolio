@@ -51,15 +51,15 @@ export default function RotatingText() {
             filter: { duration: 0.3 }
           }}
         >
-          <span className="bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent font-bold">
+          <span className="bg-gradient-to-r from-teal-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent font-bold">
             {words[index]}
           </span>
         </motion.div>
       </AnimatePresence>
-      
+
       {/* Indicateur de progression */}
-      <motion.div 
-        className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-0.5 bg-gradient-to-r from-primary via-purple-500 to-pink-500 rounded-full"
+      <motion.div
+        className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-0.5 bg-gradient-to-r from-teal-400 via-cyan-400 to-emerald-400 rounded-full"
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         key={index}

@@ -88,7 +88,7 @@ const SocialButton: React.FC<SocialButtonProps> = ({ href, onClick, icon: Icon, 
       <span className="sr-only">{label}</span>
       <Icon className="h-5 w-5 sm:h-6 sm:w-6 z-10 relative group-hover:text-white transition-colors duration-300" />
       <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-primary via-purple-500 to-pink-500"
+        className="absolute inset-0 bg-gradient-to-r from-teal-500 via-cyan-500 to-emerald-500"
         initial={{ scale: 0 }}
         whileHover={{ scale: 1 }}
         transition={{ duration: 0.3 }}
@@ -129,7 +129,7 @@ export default function Page() {
           <div className="flex flex-col items-center justify-center space-y-8 text-center w-full max-w-4xl">
             <AnimateInView className="space-y-6">
               <motion.h1 
-                className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl bg-gradient-to-r from-foreground via-primary to-purple-500 bg-clip-text text-transparent"
+                className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl bg-gradient-to-r from-foreground via-primary to-cyan-400 bg-clip-text text-transparent"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.2 }}

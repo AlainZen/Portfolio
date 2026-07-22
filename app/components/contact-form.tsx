@@ -12,6 +12,7 @@ import emailjs from "@emailjs/browser"
 const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
 const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+const EMAILJS_AUTOREPLY_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_AUTOREPLY_TEMPLATE_ID
 
 if (EMAILJS_PUBLIC_KEY) {
   emailjs.init(EMAILJS_PUBLIC_KEY)
@@ -68,17 +69,32 @@ export default function ContactForm() {
         data: formData,
       })
 
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+      }
+
       const response = await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message,
-        }
+        templateParams
       )
 
       console.log("Réponse EmailJS:", response)
+
+      if (EMAILJS_AUTOREPLY_TEMPLATE_ID) {
+        try {
+          await emailjs.send(
+            EMAILJS_SERVICE_ID,
+            EMAILJS_AUTOREPLY_TEMPLATE_ID,
+            templateParams
+          )
+        } catch (autoReplyError) {
+          console.error("Erreur d'envoi de l'auto-reply:", autoReplyError)
+        }
+      }
+
       setMessageType("success")
       setMessage("Merci pour votre message ! Je vous répondrai bientôt.")
       setFormData({ name: "", email: "", message: "" })
@@ -107,9 +123,9 @@ export default function ContactForm() {
     <div className="relative">
       {/* Background animé */}
       <div className="absolute inset-0 -z-10 overflow-hidden rounded-2xl">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 dark:from-blue-500/5 dark:via-purple-500/5 dark:to-pink-500/5" />
+        <div className="absolute inset-0 bg-gradient-to-br from-teal-500/10 via-cyan-500/10 to-emerald-500/10 dark:from-teal-500/5 dark:via-cyan-500/5 dark:to-emerald-500/5" />
         <motion.div
-          className="absolute top-0 left-0 w-40 h-40 bg-blue-500/20 rounded-full blur-3xl"
+          className="absolute top-0 left-0 w-40 h-40 bg-teal-500/20 rounded-full blur-3xl"
           animate={{
             x: [0, 100, 0],
             y: [0, 50, 0],
@@ -121,7 +137,7 @@ export default function ContactForm() {
           }}
         />
         <motion.div
-          className="absolute bottom-0 right-0 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl"
+          className="absolute bottom-0 right-0 w-40 h-40 bg-cyan-500/20 rounded-full blur-3xl"
           animate={{
             x: [0, -50, 0],
             y: [0, -50, 0],
@@ -134,14 +150,14 @@ export default function ContactForm() {
         />
       </div>
       
-      <Card className="p-8 backdrop-blur-sm bg-card/80 border-2 shadow-xl">
+      <Card className="p-5 sm:p-8 backdrop-blur-sm bg-card/80 border-2 shadow-xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+            <h3 className="text-2xl font-bold bg-gradient-to-r from-teal-500 via-cyan-500 to-emerald-500 bg-clip-text text-transparent mb-2">
               Contactez-moi
             </h3>
             <p className="text-muted-foreground">Une question ? Un projet ? N'hésitez pas !</p>
@@ -161,7 +177,7 @@ export default function ContactForm() {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
               <label htmlFor="name" className="block text-sm font-medium flex items-center gap-2">
-                <User className="w-4 h-4 text-blue-600" />
+                <User className="w-4 h-4 text-teal-500" />
                 Nom
               </label>
               <Input 
@@ -177,7 +193,7 @@ export default function ContactForm() {
             </div>
             <div className="space-y-2">
               <label htmlFor="email" className="block text-sm font-medium flex items-center gap-2">
-                <Mail className="w-4 h-4 text-purple-600" />
+                <Mail className="w-4 h-4 text-cyan-500" />
                 Email
               </label>
               <Input 
@@ -194,7 +210,7 @@ export default function ContactForm() {
             </div>
             <div className="space-y-2">
               <label htmlFor="message" className="block text-sm font-medium flex items-center gap-2">
-                <MessageSquare className="w-4 h-4 text-pink-600" />
+                <MessageSquare className="w-4 h-4 text-emerald-500" />
                 Message
               </label>
               <Textarea 
@@ -210,7 +226,7 @@ export default function ContactForm() {
             </div>
             <Button 
               type="submit" 
-              className="w-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 transition-all duration-300 group" 
+              className="w-full bg-gradient-to-r from-teal-500 via-cyan-500 to-emerald-500 hover:from-teal-600 hover:via-cyan-600 hover:to-emerald-600 transition-all duration-300 group" 
               disabled={!isEmailJsConfigured || pending}
             >
               {pending ? (

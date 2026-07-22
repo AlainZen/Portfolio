@@ -53,7 +53,7 @@ export default function Header() {
             onClick={() => scrollToSection("#about")}
             whileHover={{ scale: 1.05 }} 
             whileTap={{ scale: 0.95 }}
-            className="text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"
+            className="text-2xl font-bold bg-gradient-to-r from-teal-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent"
           >
             SA
           </motion.button>
@@ -70,7 +70,7 @@ export default function Header() {
               >
                 {item.label}
                 <motion.div
-                  className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"
+                  className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-teal-400 to-cyan-400 rounded-full"
                   variants={{ 
                     rest: { width: 0 }, 
                     hover: { width: "100%" } 
