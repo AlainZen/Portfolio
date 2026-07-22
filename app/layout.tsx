@@ -30,11 +30,11 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Sliman Alain" }],
   creator: "Sliman Alain",
-  metadataBase: new URL("https://sliman.dev"),
+  metadataBase: new URL("https://alainsli.com"),
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    url: "https://sliman.dev",
+    url: "https://alainsli.com",
     title: "Sliman Alain - Full Stack Developer",
     description: "Portfolio de Sliman Alain, développeur Full Stack spécialisé en React, Node.js et technologies web modernes.",
     siteName: "Sliman Alain Portfolio",

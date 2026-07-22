@@ -2,7 +2,7 @@
 
 Mon portfolio perso, fait avec Next.js, TypeScript et Tailwind.
 
-- **Live** : [sliman.dev](https://www.sliman.dev/)
+- **Live** : [alainsli.com](https://www.alainsli.com/)
 - **Auteur** : Alain Sliman
 
 ## Stack
